@@ -21,7 +21,6 @@ class BarnFylt15årTest : DatabehandlerTest() {
 
     @Test
     fun skalOppretteNyForespørselForBarnSomHarFylt15år() {
-
         // gitt
         var forespørselUtenBarnOver15år = opppretteForespørsel(true)
         forespørselUtenBarnOver15år.barn = mutableSetOf(testpersonBarn11, testpersonBarn12)
@@ -70,7 +69,6 @@ class BarnFylt15årTest : DatabehandlerTest() {
 
     @Test
     fun skalOppdatereForespørselHvisInneholderBareEnBarn() {
-
         // gitt
         var originalForespørsel = opppretteForespørsel(true)
         originalForespørsel.barn = mutableSetOf(testpersonBarn15)
@@ -108,7 +106,6 @@ class BarnFylt15årTest : DatabehandlerTest() {
 
     @Test
     fun skalOppdatereForespørselHvisInneholderFlereBarnSomHarFylt15år() {
-
         // gitt
         var originalForespørsel = opppretteForespørsel(true)
         originalForespørsel.barn = mutableSetOf(testpersonBarn15, testpersonBarn15_3)
@@ -146,7 +143,6 @@ class BarnFylt15årTest : DatabehandlerTest() {
 
     @Test
     fun skalRulleTilbakeEndringerVedFeil() {
-
         // gitt
         var forespørselMedFeil = opppretteForespørsel(true)
         forespørselMedFeil.barn = mutableSetOf(testpersonBarn11, testpersonBarn15_2)

@@ -11,11 +11,11 @@ import java.time.LocalDateTime
 import javax.transaction.Transactional
 
 @DisplayName("ArkiverSkeduleringTest")
-class ArkiverTest: DatabehandlerTest() {
+class ArkiverTest : DatabehandlerTest() {
 
     @Test
     @Transactional
-    fun skalArkivereFlereForespørsler(){
+    fun skalArkivereFlereForespørsler() {
         val forespørsel = opppretteForespørsel()
         val forespørsel2 = opppretteForespørsel()
         val forespørsel3 = opppretteForespørsel()
@@ -34,9 +34,10 @@ class ArkiverTest: DatabehandlerTest() {
             verifiserDokumentArkivertForForespørsel(forespørsel3.id)
         }
     }
+
     @Test
     @Transactional
-    fun skalArkivereForespørslerSomIkkeKreverSamtykke(){
+    fun skalArkivereForespørslerSomIkkeKreverSamtykke() {
         val forespørsel = opppretteForespørsel()
         forespørsel.isKreverSamtykke = false
         forespørsel.samtykket = null
@@ -52,7 +53,7 @@ class ArkiverTest: DatabehandlerTest() {
 
     @Test
     @Transactional
-    fun skalArkivereForespørslerSomErSamtykket(){
+    fun skalArkivereForespørslerSomErSamtykket() {
         val forespørsel = opppretteForespørsel()
         forespørsel.isKreverSamtykke = true
         forespørsel.samtykket = LocalDateTime.now()
@@ -68,7 +69,7 @@ class ArkiverTest: DatabehandlerTest() {
 
     @Test
     @Transactional
-    fun skalIkkeArkivereForespørslerSomIkkeErSamtykket(){
+    fun skalIkkeArkivereForespørslerSomIkkeErSamtykket() {
         val forespørsel = opppretteForespørsel()
         forespørsel.isKreverSamtykke = true
 

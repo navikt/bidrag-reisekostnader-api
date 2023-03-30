@@ -15,5 +15,5 @@ import org.springframework.core.annotation.AliasFor
 @MustBeDocumented
 @Cacheable(keyGenerator = UserCacheKey.GENERATOR_BEAN)
 annotation class UserCacheable(
-    @get:AliasFor(annotation = Cacheable::class) vararg val value: String = [],
+    @get:AliasFor(annotation = Cacheable::class) vararg val value: String = []
 )

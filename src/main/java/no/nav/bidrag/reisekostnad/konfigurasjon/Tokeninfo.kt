@@ -3,7 +3,6 @@ package no.nav.bidrag.reisekostnad.konfigurasjon
 import no.nav.bidrag.commons.security.service.OidcTokenManager
 import no.nav.bidrag.commons.security.utils.TokenUtils
 import no.nav.bidrag.commons.security.utils.TokenUtils.fetchSubject
-import org.springframework.stereotype.Service
 
 class Tokeninfo {
     companion object {
@@ -23,5 +22,4 @@ class Tokeninfo {
             }
         }
     }
-
 }

@@ -10,11 +10,8 @@ import no.nav.bidrag.reisekostnad.model.erArkivert
 import no.nav.bidrag.reisekostnad.model.kanArkiveres
 import no.nav.bidrag.reisekostnad.tjeneste.støtte.Mapper
 import org.springframework.stereotype.Service
-import java.io.File
-import java.nio.file.FileSystems
 import java.time.LocalDateTime
 import javax.transaction.Transactional
-
 
 private val log = KotlinLogging.logger {}
 
@@ -39,7 +36,7 @@ class Arkiveringstjeneste(
             forespørsel.journalført = LocalDateTime.now()
             forespørsel.idJournalpost = respons.journalpostId
             log.info { "Arkivert dokument for forespørsel $idForespørsel med journalpostid ${respons.journalpostId}" }
-        } catch (e: Exception){
+        } catch (e: Exception) {
             log.error("Det skjedde en feil ved arkivering av dokument for forespørsel $idForespørsel", e)
         }
     }

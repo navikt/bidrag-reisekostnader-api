@@ -80,7 +80,7 @@ class DatabehandlerTest {
     protected var testpersonBarn15_2 = Barn.builder().personident("5515155").fødselsdato(LocalDate.now().minusYears(15).minusDays(7)).build()
     protected var testpersonBarn15_3 = Barn.builder().personident("235515232323455555").fødselsdato(LocalDate.now().minusYears(15).minusDays(1)).build()
 
-    fun opppretteForespørsel(kreverSamtykke: Boolean = false): Forespørsel{
+    fun opppretteForespørsel(kreverSamtykke: Boolean = false): Forespørsel {
         return Forespørsel.builder()
             .opprettet(LocalDateTime.now())
             .hovedpart(testpersonGråtass)

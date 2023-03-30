@@ -3,11 +3,8 @@ package no.nav.bidrag.reisekostnad.konfigurasjon.cache
 import com.github.benmanes.caffeine.cache.Expiry
 import java.time.Duration
 import java.time.LocalDateTime
-import java.time.ZoneId
-import java.time.ZoneOffset
-import java.util.concurrent.TimeUnit
 
-class CacheEvictBeforeWorkingHours: Expiry<Any, Any>{
+class CacheEvictBeforeWorkingHours : Expiry<Any, Any> {
     override fun expireAfterCreate(p0: Any, p1: Any, currentTime: Long): Long {
         val expireAt = LocalDateTime.now()
             .plusDays(1)

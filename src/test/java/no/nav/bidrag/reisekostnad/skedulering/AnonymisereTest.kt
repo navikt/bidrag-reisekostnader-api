@@ -15,7 +15,6 @@ class AnonymisereTest : DatabehandlerTest() {
 
     @Test
     fun skalAnonymisereBarnOgSletteForeldreSomIkkeErTilknyttetAktiveForespørsler() {
-
         // gitt
         var anonymiseringsklarForespørsel = opppretteForespørsel(true)
 
@@ -36,10 +35,10 @@ class AnonymisereTest : DatabehandlerTest() {
         }
 
         // hvis
-        databehandler.anonymisereBarnOgSletteForeldreSomIkkeErKnyttetTilAktiveForespørsler();
+        databehandler.anonymisereBarnOgSletteForeldreSomIkkeErKnyttetTilAktiveForespørsler()
 
         // så
-        var anonymisertForespørsel = forespørselDao.findById(lagretAnonymiseringsklarForespørsel.id);
+        var anonymisertForespørsel = forespørselDao.findById(lagretAnonymiseringsklarForespørsel.id)
 
         var hovedpartEtterSletting = forelderDao.findById(lagretAnonymiseringsklarForespørsel.hovedpart.id)
         var motpartEtterSletting = forelderDao.findById(lagretAnonymiseringsklarForespørsel.motpart.id)
@@ -61,7 +60,6 @@ class AnonymisereTest : DatabehandlerTest() {
 
     @Test
     fun skalIkkeAnonymisereAktiveForespørsler() {
-
         // gitt
         var anonymiseringsklarForespørsel = opppretteForespørsel(true)
 
@@ -75,10 +73,10 @@ class AnonymisereTest : DatabehandlerTest() {
         var lagretAnonymiseringsklarForespørsel = forespørselDao.save(anonymiseringsklarForespørsel)
 
         // hvis
-        databehandler.anonymisereBarnOgSletteForeldreSomIkkeErKnyttetTilAktiveForespørsler();
+        databehandler.anonymisereBarnOgSletteForeldreSomIkkeErKnyttetTilAktiveForespørsler()
 
         // så
-        var anonymisertForespørsel = forespørselDao.findById(lagretAnonymiseringsklarForespørsel.id);
+        var anonymisertForespørsel = forespørselDao.findById(lagretAnonymiseringsklarForespørsel.id)
 
         assertSoftly {
             assertThat(anonymisertForespørsel.isPresent)
@@ -95,7 +93,6 @@ class AnonymisereTest : DatabehandlerTest() {
 
     @Test
     fun skalIkkeAnonymisereForespørslerSomIkkeErDeaktivert() {
-
         // gitt
         var ikkeAnonymiseringsklarForespørsel = opppretteForespørsel(true)
 
@@ -107,10 +104,10 @@ class AnonymisereTest : DatabehandlerTest() {
         var lagretAnonymiseringsklarForespørsel = forespørselDao.save(ikkeAnonymiseringsklarForespørsel)
 
         // hvis
-        databehandler.anonymisereBarnOgSletteForeldreSomIkkeErKnyttetTilAktiveForespørsler();
+        databehandler.anonymisereBarnOgSletteForeldreSomIkkeErKnyttetTilAktiveForespørsler()
 
         // så
-        var ikkeAnonymisertForespørsel = forespørselDao.findById(lagretAnonymiseringsklarForespørsel.id);
+        var ikkeAnonymisertForespørsel = forespørselDao.findById(lagretAnonymiseringsklarForespørsel.id)
 
         assertSoftly {
             assertThat(ikkeAnonymisertForespørsel.isPresent)
@@ -124,7 +121,6 @@ class AnonymisereTest : DatabehandlerTest() {
 
     @Test
     fun skalIkkeASletteForeldreMedAktiveBrukernotifikasjonsoppgaver() {
-
         // gitt
         var anonymiseringsklarForespørsel = opppretteForespørsel(true)
 
@@ -137,16 +133,16 @@ class AnonymisereTest : DatabehandlerTest() {
 
         var lagretAnonymiseringsklarForespørsel = forespørselDao.save(anonymiseringsklarForespørsel)
 
-        var eventId = UUID.randomUUID().toString();
+        var eventId = UUID.randomUUID().toString()
         var samtykkeoppgave = Oppgavebestilling.builder().eventId(eventId).forespørsel(lagretAnonymiseringsklarForespørsel)
-            .forelder(lagretAnonymiseringsklarForespørsel.motpart).build();
-        oppgavebestillingDao.save(samtykkeoppgave);
+            .forelder(lagretAnonymiseringsklarForespørsel.motpart).build()
+        oppgavebestillingDao.save(samtykkeoppgave)
 
         // hvis
-        databehandler.anonymisereBarnOgSletteForeldreSomIkkeErKnyttetTilAktiveForespørsler();
+        databehandler.anonymisereBarnOgSletteForeldreSomIkkeErKnyttetTilAktiveForespørsler()
 
         // så
-        var anonymisertForespørsel = forespørselDao.findById(lagretAnonymiseringsklarForespørsel.id);
+        var anonymisertForespørsel = forespørselDao.findById(lagretAnonymiseringsklarForespørsel.id)
 
         assertSoftly {
             assertThat(anonymisertForespørsel.isPresent)

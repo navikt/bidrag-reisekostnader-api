@@ -20,7 +20,6 @@ class DeaktivereJournalførteOgUtgåtteForespørslerTest : DatabehandlerTest() {
 
     @Test
     fun skalDeaktivereJournalførtForespørsel() {
-
         // gitt
         var journalførtForespørsel = opppretteForespørsel(true)
 
@@ -30,10 +29,10 @@ class DeaktivereJournalførteOgUtgåtteForespørslerTest : DatabehandlerTest() {
         var lagretForespørsel = forespørselDao.save(journalførtForespørsel)
 
         // hvis
-        databehandler.deaktivereJournalførteOgUtgåtteForespørsler();
+        databehandler.deaktivereJournalførteOgUtgåtteForespørsler()
 
         // så
-        var deaktivertForespørsel = forespørselDao.findById(lagretForespørsel.id);
+        var deaktivertForespørsel = forespørselDao.findById(lagretForespørsel.id)
 
         assertSoftly {
             assertThat(deaktivertForespørsel.isPresent)
@@ -45,7 +44,6 @@ class DeaktivereJournalførteOgUtgåtteForespørslerTest : DatabehandlerTest() {
 
     @Test
     fun skalDeaktivereForespørselMedUtløptSamtykkefrist() {
-
         // gitt
         var forespørselMedUtløptSamtykkefrist = opppretteForespørsel(true)
         forespørselMedUtløptSamtykkefrist.opprettet =
@@ -53,15 +51,15 @@ class DeaktivereJournalførteOgUtgåtteForespørslerTest : DatabehandlerTest() {
 
         var lagretForespørsel = forespørselDao.save(forespørselMedUtløptSamtykkefrist)
 
-        var eventId = UUID.randomUUID().toString();
-        var samtykkeoppgave = Oppgavebestilling.builder().eventId(eventId).forespørsel(lagretForespørsel).forelder(lagretForespørsel.motpart).build();
-        oppgavebestillingDao.save(samtykkeoppgave);
+        var eventId = UUID.randomUUID().toString()
+        var samtykkeoppgave = Oppgavebestilling.builder().eventId(eventId).forespørsel(lagretForespørsel).forelder(lagretForespørsel.motpart).build()
+        oppgavebestillingDao.save(samtykkeoppgave)
 
         // hvis
-        databehandler.deaktivereJournalførteOgUtgåtteForespørsler();
+        databehandler.deaktivereJournalførteOgUtgåtteForespørsler()
 
         // så
-        var deaktivertForespørsel = forespørselDao.findById(lagretForespørsel.id);
+        var deaktivertForespørsel = forespørselDao.findById(lagretForespørsel.id)
 
         assertSoftly {
             assertThat(deaktivertForespørsel.isPresent)
@@ -71,7 +69,8 @@ class DeaktivereJournalførteOgUtgåtteForespørslerTest : DatabehandlerTest() {
             assertThat(deaktivertForespørsel.get().journalført).isNull()
             Mockito.verify(brukernotifikasjonkonsument, times(1)).ferdigstilleSamtykkeoppgave(anyString(), anyString())
             Mockito.verify(
-                brukernotifikasjonkonsument, times(1)
+                brukernotifikasjonkonsument,
+                times(1)
             ).varsleForeldreOmManglendeSamtykke(
                 forespørselMedUtløptSamtykkefrist.hovedpartIdent,
                 forespørselMedUtløptSamtykkefrist.motpartIdent,
@@ -83,7 +82,6 @@ class DeaktivereJournalførteOgUtgåtteForespørslerTest : DatabehandlerTest() {
 
     @Test
     fun skalSletteSamtykkeoppgaveSelvOmVarslingAvForeldreFeiler() {
-
         // gitt
         var forespørselMedFeilOgUtløptSamtykkefrist = opppretteForespørsel(true)
         forespørselMedFeilOgUtløptSamtykkefrist.barn = mutableSetOf(testpersonBarn11, testpersonBarn15_2)
@@ -93,15 +91,15 @@ class DeaktivereJournalførteOgUtgåtteForespørslerTest : DatabehandlerTest() {
 
         var lagretForespørselMedFeilOgUtløptSamtykkefrist = forespørselDao.save(forespørselMedFeilOgUtløptSamtykkefrist)
 
-        var eventId = UUID.randomUUID().toString();
-        var samtykkeoppgave = Oppgavebestilling.builder().eventId(eventId).forespørsel(lagretForespørselMedFeilOgUtløptSamtykkefrist).forelder(lagretForespørselMedFeilOgUtløptSamtykkefrist.motpart).build();
-        oppgavebestillingDao.save(samtykkeoppgave);
+        var eventId = UUID.randomUUID().toString()
+        var samtykkeoppgave = Oppgavebestilling.builder().eventId(eventId).forespørsel(lagretForespørselMedFeilOgUtløptSamtykkefrist).forelder(lagretForespørselMedFeilOgUtløptSamtykkefrist.motpart).build()
+        oppgavebestillingDao.save(samtykkeoppgave)
 
         // hvis
-        databehandler.deaktivereJournalførteOgUtgåtteForespørsler();
+        databehandler.deaktivereJournalførteOgUtgåtteForespørsler()
 
         // så
-        var deaktivertForespørselMedFeilOgUtløptSamtykkefrist = forespørselDao.findById(lagretForespørselMedFeilOgUtløptSamtykkefrist.id);
+        var deaktivertForespørselMedFeilOgUtløptSamtykkefrist = forespørselDao.findById(lagretForespørselMedFeilOgUtløptSamtykkefrist.id)
 
         assertSoftly {
             assertThat(deaktivertForespørselMedFeilOgUtløptSamtykkefrist.isPresent)

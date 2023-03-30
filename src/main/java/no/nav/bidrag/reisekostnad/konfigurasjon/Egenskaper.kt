@@ -12,6 +12,7 @@ class Egenskaperkonfig {
     fun egenskaperBrukernotifikasjon(): Brukernotifikasjon {
         return Brukernotifikasjon()
     }
+
     @Bean
     fun egenskaper(): Egenskaper {
         return Egenskaper()
@@ -19,10 +20,11 @@ class Egenskaperkonfig {
 }
 
 @ConfigurationProperties(prefix = "egenskaper")
-data class Egenskaper (
+data class Egenskaper(
     var appnavnReisekostnad: String = "bidrag-reisekostnad",
     var urlReisekostnad: String = "",
-    var brukernotifikasjon: Brukernotifikasjon = Brukernotifikasjon())
+    var brukernotifikasjon: Brukernotifikasjon = Brukernotifikasjon()
+)
 
 @ConfigurationProperties(prefix = "brukernotifikasjon")
 data class Brukernotifikasjon(
@@ -36,5 +38,3 @@ data class Brukernotifikasjon(
     var sikkerhetsnivaaOppgave: Int = 3,
     var skruddPaa: Boolean = true
 )
-
-

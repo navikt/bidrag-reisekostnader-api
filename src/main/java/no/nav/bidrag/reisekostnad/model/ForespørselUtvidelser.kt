@@ -9,7 +9,6 @@ val Forespørsel.motpartIdent get() = motpart.personident
 val Forespørsel.identerBarnSomHarFylt15år get() = barnSomHarFylt15år.map { it.personident }.toMutableSet()
 val Forespørsel.barnSomHarFylt15år get() = barn.filter { it.harFylt15år }.toMutableSet()
 val Forespørsel.alleBarnHarFylt15år get() = barnSomHarFylt15år.size == barn.size
-fun Forespørsel.fjernBarnSomHarFylt15år(){
+fun Forespørsel.fjernBarnSomHarFylt15år() {
     barn = barn.filter { !it.harFylt15år }.toSet()
 }
-

@@ -45,8 +45,8 @@ class ArkiveringTjenesteTest {
     // TESTDATA
     private val hovedpartFodselsdato = LocalDate.parse("2022-01-02")
     private val motpartFodselsdato = LocalDate.parse("2022-01-02")
-    private val identHovedpart = "123213213";
-    private val identMotpart = "3541555";
+    private val identHovedpart = "123213213"
+    private val identMotpart = "3541555"
 
     private val identBarn1 = "565551251"
     private val identBarn2 = "41244124"
@@ -72,7 +72,6 @@ class ArkiveringTjenesteTest {
 
     @Test
     fun skalOppretteDokumentOgArkivereDokument() {
-
         val responsJournalpostId = "123213213333"
 
         val forespørsel = oppretteForespørsel(identHovedpart, identMotpart, barn)
@@ -93,7 +92,6 @@ class ArkiveringTjenesteTest {
 
     @Test
     fun skalIkkeArkivereHvisAlleredeArkivert() {
-
         val forespørsel = oppretteForespørsel(identHovedpart, identMotpart, barn)
         forespørsel.id = 5151515
         forespørsel.journalført = LocalDateTime.now()
@@ -110,7 +108,6 @@ class ArkiveringTjenesteTest {
 
     @Test
     fun skalIkkeArkivereHvisDeaktivert() {
-
         val forespørsel = oppretteForespørsel(identHovedpart, identMotpart, barn)
         forespørsel.id = 5151515
         forespørsel.deaktivert = LocalDateTime.now()
@@ -126,7 +123,6 @@ class ArkiveringTjenesteTest {
 
     @Test
     fun skalIkkeArkivereHvisManglerSamtykke() {
-
         val forespørsel = oppretteForespørsel(identHovedpart, identMotpart, barn)
         forespørsel.id = 5151515
         forespørsel.isKreverSamtykke = true
@@ -165,7 +161,6 @@ class ArkiveringTjenesteTest {
 
     @Test
     fun skalIkkeKasteFeilHvisOpprettDokumentFeiler() {
-
         val forespørsel = oppretteForespørsel(identHovedpart, identMotpart, barn)
         forespørsel.id = 5151515
 
@@ -179,7 +174,6 @@ class ArkiveringTjenesteTest {
             forespørsel.idJournalpost shouldBe null
             verify { bidragDokument.opprettJournalpost(identHovedpart, match { it.contains(forespørsel.id.toString()) }, any()) }
         }
-
     }
 
     private fun oppretteForespørsel(identHovedpart: String, identMotpart: String, barn: Set<Barn>): Forespørsel {

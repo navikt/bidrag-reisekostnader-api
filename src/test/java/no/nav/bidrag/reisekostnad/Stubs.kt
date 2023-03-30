@@ -17,9 +17,12 @@ fun verifiserDokumentArkivertForForespørsel(forespørselId: Int?) {
 }
 
 fun verifiserDokumentArkivertForForespørselAntallGanger(antallGanger: Int) {
-    WireMock.verify(antallGanger, WireMock.postRequestedFor(
-        WireMock.urlEqualTo("/bidrag-dokument/journalpost/JOARK")
-    ))
+    WireMock.verify(
+        antallGanger,
+        WireMock.postRequestedFor(
+            WireMock.urlEqualTo("/bidrag-dokument/journalpost/JOARK")
+        )
+    )
 }
 
 fun verifiserDokumentIkkeArkivertForForespørsel(forespørselId: Int?) {
