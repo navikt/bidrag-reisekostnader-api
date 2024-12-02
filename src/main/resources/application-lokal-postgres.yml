@@ -90,7 +90,7 @@ spring:
       minimum-idle: 1
   flyway:
     enabled: true
-    flyway.locations: classpath:/db/migration
+    locations: classpath:/db/migration
   jpa:
     hibernate.connection.provider_class: org.hibernate.hikaricp.internal.HikariCPConnectionProvider
     properties:
