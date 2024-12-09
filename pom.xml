@@ -26,7 +26,7 @@
     <!-- PDF -->
     <apache-pdfbox.version>2.0.29</apache-pdfbox.version>
     <openhtml.version>1.0.10</openhtml.version>
-    <jsoup.version>1.18.1</jsoup.version>
+    <jsoup.version>1.18.3</jsoup.version>
 
     <!-- annet -->
     <avro.version>1.11.3</avro.version>
